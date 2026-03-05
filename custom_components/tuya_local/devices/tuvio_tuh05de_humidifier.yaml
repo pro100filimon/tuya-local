@@ -3,10 +3,9 @@ products:
   - id: w7c75twee9njzqw6
     manufacturer: Tuvio
     model: TUH05DE
-    model_id: TUH05DE
+    model_id: TUH05DEv2
 
 entities:
-  # Main humidifier entity
   - entity: humidifier
     class: humidifier
     name: Humidifier
@@ -15,7 +14,7 @@ entities:
         name: switch
         type: boolean
 
-      # Target humidity (works only when DP21 enabled)
+      # Target humidity (works only when "Target humidity control" enabled)
       - id: 13
         name: humidity
         type: integer
@@ -31,7 +30,6 @@ entities:
         type: integer
         unit: "%"
 
-      # Mist level mapped to humidifier "mode"
       - id: 23
         name: mode
         type: string
@@ -45,22 +43,32 @@ entities:
           - dps_val: level4
             value: auto
 
-  # Spray on/off (some devices separate power and spray)
+  # Auto mode
   - entity: switch
-    name: Mist
-    icon: mdi:weather-fog
+    name: Auto mode
+    icon: mdi:auto-mode
     dps:
       - id: 2
         name: switch
         type: boolean
 
-  # Enable/disable target humidity control (your "sterilization" dp)
+  # Enable/disable target humidity control
   - entity: switch
     name: Target humidity control
     icon: mdi:target
     category: config
     dps:
       - id: 21
+        name: switch
+        type: boolean
+
+  # Warm mist
+  - entity: switch
+    name: Warm mist
+    icon: mdi:weather-fog
+    category: config
+    dps:
+      - id: 5
         name: switch
         type: boolean
 
@@ -80,16 +88,6 @@ entities:
     category: config
     dps:
       - id: 25
-        name: switch
-        type: boolean
-
-  # LED power
-  - entity: switch
-    name: LED
-    icon: mdi:led-strip-variant
-    category: config
-    dps:
-      - id: 5
         name: switch
         type: boolean
 
